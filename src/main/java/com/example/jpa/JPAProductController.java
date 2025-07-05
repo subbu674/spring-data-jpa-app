@@ -5,6 +5,8 @@ import java.util.UUID;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,5 +34,24 @@ public class JPAProductController {
         return ResponseEntity.ok().build();
     }
     
-    
 }
+
+how many transactions are created 
+
+@Service
+class ProductService {
+
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public void a() {
+		b();
+	}
+
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public void b() {
+
+	}
+
+}
+
+
+
